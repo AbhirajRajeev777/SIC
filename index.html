@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            background: #ffffff;
+            box-sizing: border-box;
+            width: 100%;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        *, *:before, *:after {
+            box-sizing: inherit;
+        }
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #3d1366;
+            border: 6px solid #222;
+            padding: 0 2vw;
+            min-height: 70px;
+            width: 100%;
+        }
+        .logo {
+            height: 50px;
+            width: auto;
+            display: flex;
+            align-items: center;
+        }
+        .nav {
+            display: flex;
+            gap: 2vw;
+        }
+        .nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1rem;
+            font-family: poppins;
+            transition: color 0.2s;
+        }
+        .nav a:hover {
+            color: #ff9800;
+        }
+        @media (max-width: 900px) {
+            .topbar {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 1vw;
+                min-height: 50px;
+            }
+            .nav {
+                gap: 1vw;
+                width: 100%;
+                justify-content: flex-start;
+                flex-wrap: wrap;
+            }
+            .nav a {
+                font-size: 0.95rem;
+            }
+            .logo {
+                height: 38px;
+            }
+        }
+        @media (max-width: 600px) {
+            .topbar {
+                padding: 0.5vw;
+            }
+            .nav a {
+                font-size: 0.9rem;
+            }
+        }
+        .features-section {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+            width: 100%;
+        }
+        .feature-card {
+            background: #fff;
+            border: 2px solid #eee;
+            border-radius: 18px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            width: 320px;
+            max-width: 95vw;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            overflow: hidden;
+            transition: box-shadow 0.2s;
+        }
+        .feature-card:hover {
+            box-shadow: 0 4px 16px rgba(61,19,102,0.12);
+        }
+        .feature-img {
+            width: 100%;
+            height: 218px;
+            object-fit: cover;
+            border-top-left-radius: 16px;
+            border-top-right-radius: 16px;
+        }
+        .feature-content {
+            padding: 1.2rem 1.2rem 1.5rem 1.2rem;
+        }
+        .feature-title {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+        .feature-desc {
+            color: #555;
+            font-size: 0.98rem;
+            line-height: 1.5;
+        }
+        @media (max-width: 1100px) {
+            .features-section {
+                gap: 1rem;
+            }
+            .feature-card {
+                width: 280px;
+            }
+        }
+        @media (max-width: 900px) {
+            .features-section {
+                flex-direction: column;
+                align-items: center;
+            }
+            .feature-card {
+                width: 95vw;
+                max-width: 400px;
+            }
+            .feature-img {
+                height: 120px;
+            }
+        }
+        @media (max-width: 600px) {
+            .feature-card {
+                width: 98vw;
+                max-width: 98vw;
+            }
+            .feature-img {
+                height: 90px;
+            }
+            .feature-content {
+                padding: 0.7rem 0.7rem 1rem 0.7rem;
+            }
+        }
+        .image-container {
+            width: 100%;
+            max-width: 1728px;
+            aspect-ratio: 1728/932;
+            margin: 2rem auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            border-radius: 18px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            background: #f5f5f5;
+            position: relative;
+        }
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .quotation-btn {
+            position: absolute;
+            left: 50%;
+            bottom: 7.5%;
+            transform: translateX(-50%);
+            width: 80%;
+            max-width: 520px;
+            min-width: 180px;
+            padding: 1rem 0;
+            background: #FFA940;
+            color: #fff;
+            font-family: poppins, Arial, sans-serif;
+            font-weight: 700;
+            font-size: clamp(1.1rem, 4vw, 2rem);
+            border: none;
+            border-radius: 20px;
+            box-shadow: 0 4px 18px rgba(255,169,64,0.18);
+            cursor: pointer;
+            transition: background 0.2s, box-shadow 0.2s;
+            z-index: 2;
+            letter-spacing: 0.5px;
+            text-align: center;
+            box-sizing: border-box;
+        }
+        .quotation-btn:hover {
+            background: #ffb95e;
+            box-shadow: 0 6px 28px rgba(255,169,64,0.28);
+        }
+        @media (max-width: 600px) {
+            .quotation-btn {
+                width: 320px;
+                height: 48px;
+                font-size: 1.1rem;
+            }
+        }
+        .about-section {
+            background: linear-gradient(90deg, #f6f9fc 0%, #eef2fa 100%);
+            text-align: center;
+            padding: 64px 16px 56px 16px;
+            margin: 0 auto;
+        }
+        .about-label {
+            color: #2d4ecb;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+        .about-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #222;
+            margin: 0 0 8px 0;
+            font-family: poppins, Arial, sans-serif;
+        }
+        .about-underline {
+            width: 60px;
+            height: 4px;
+            background: #6c3ad7;
+            border-radius: 2px;
+            margin: 0 auto 28px auto;
+        }
+        .about-desc {
+            max-width: 700px;
+            margin: 0 auto;
+            color: #444;
+            font-size: 1.15rem;
+            line-height: 1.7;
+        }
+        @media (max-width: 600px) {
+            .about-section {
+                padding: 36px 6vw 28px 6vw;
+            }
+            .about-title {
+                font-size: 1.5rem;
+            }
+            .about-underline {
+                width: 36px;
+                height: 3px;
+                margin-bottom: 18px;
+            }
+            .about-desc {
+                font-size: 1rem;
+            }
+        }
+        .image-container-626 {
+            width: 100%;
+            max-width: 1400px;
+            height: 626px;
+            margin: 2rem auto 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            border-radius: 18px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            background: #f5f5f5;
+            position: relative;
+        }
+        .image-container-626 img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        @media (max-width: 900px) {
+            .image-container-626 {
+                max-width: 98vw;
+                height: 50vw;
+                min-height: 220px;
+            }
+        }
+        @media (max-width: 600px) {
+            .image-container-626 {
+                max-width: 100vw;
+                height: 38vw;
+                min-height: 120px;
+                border-radius: 8px;
+            }
+        }
+        .image-container-1728x626 {
+            width: 1728px;
+            max-width: 100%;
+            height: 626px;
+            margin: 2rem auto 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            background: #f5f5f5;
+            position: relative;
+        }
+        .image-container-1728x626 img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        @media (max-width: 900px) {
+            .image-container-1728x626 {
+                width: 98vw;
+                height: calc(98vw * 626 / 1728);
+                min-height: 180px;
+            }
+        }
+        @media (max-width: 600px) {
+            .image-container-1728x626 {
+                width: 100vw;
+                height: calc(100vw * 626 / 1728);
+                min-height: 120px;
+                border-radius: 8px;
+            }
+        }
+        .cta-orange-section {
+            width: 100vw;
+            margin-left: calc(50% - 50vw);
+            background: #faa326;
+            padding: 48px 0 32px 0;
+            text-align: center;
+        }
+        .cta-quotation-btn {
+            background: #fff;
+            color: #faa326;
+            font-family: poppins, Arial, sans-serif;
+            font-weight: 600;
+            font-size: 1.2rem;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 2rem;
+            box-shadow: 0 4px 18px rgba(250,163,38,0.18);
+            cursor: pointer;
+            transition: box-shadow 0.2s, background 0.2s, color 0.2s;
+            margin: 0 auto;
+            display: inline-block;
+        }
+        .cta-quotation-btn:hover {
+            background: #ffe3b3;
+            color: #d48806;
+            box-shadow: 0 6px 28px rgba(250,163,38,0.28);
+        }
+        .image-container-1728x947 {
+            width: 1728px;
+            max-width: 100%;
+            height: 947px;
+            margin: 2rem auto 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            border-radius: 18px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            background: #f5f5f5;
+            position: relative;
+        }
+        .image-container-1728x947 img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        @media (max-width: 900px) {
+            .image-container-1728x947 {
+                width: 98vw;
+                height: calc(98vw * 947 / 1728);
+                min-height: 180px;
+            }
+        }
+        @media (max-width: 600px) {
+            .image-container-1728x947 {
+                width: 100vw;
+                height: calc(100vw * 947 / 1728);
+                min-height: 120px;
+                border-radius: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="topbar">
+        <img src="https://via.placeholder.com/150x70?text=SIC+Logo" alt="SIC Logo" class="logo">
+        <nav class="nav">
+            <a href="#">Home</a>
+            <a href="#">Why Choose SIC?</a>
+            <a href="#">Benefits</a>
+            <a href="#">FAQ</a>
+            <a href="#">Language</a>
+        </nav>
+    </div>
+    <div class="features-section">
+        <div class="feature-card">
+            <img src="./1.png" alt="Get Insured Instantly" class="feature-img">
+            <div class="feature-content">
+                <div class="feature-title">⚡ <b>Get Insured Instantly</b></div>
+                <div class="feature-desc">No long waits, no complex forms. Get your coverage confirmed within minutes—fully digital, fully secure.</div>
+            </div>
+        </div>
+        <div class="feature-card">
+            <img src="https://images.unsplash.com/photo-1503736334956-4" alt="Free Roadside Assistance" class="feature-img">
+            <div class="feature-content">
+                <div class="feature-title">🛠️ <b>Free Roadside Assistance</b></div>
+                <div class="feature-desc">Flat tire? Breakdown? We're just a call away, 24/7—because safety doesn't wait.</div>
+            </div>
+        </div>
+        <div class="feature-card">
+            <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=400&q=80" alt="Flexible Premium Installments" class="feature-img">
+            <div class="feature-content">
+                <div class="feature-title">🧾 <b>Flexible Premium Installments</b></div>
+                <div class="feature-desc">Enjoy budget-friendly plans with easy monthly deductions. Stay covered without breaking the bank.</div>
+            </div>
+        </div>
+    </div>
+    <div class="image-container">
+        <img src="./Frame 13 (14).png" alt="Main Visual" />
+        <button class="quotation-btn">Get Quotation Now</button>
+    </div>
+   
+    <div class="about-section">
+        <div class="about-label">OUR STORY</div>
+        <h2 class="about-title">About SIC</h2>
+        <div class="about-underline"></div>
+        <p class="about-desc">
+            We are a corporate agent for all classes of insurance and takaful. Since 1985, SIC has served many corporate and individual clients across Malaysia. We provide quality, reliable insurance services supported by our insurance and takaful principals.
+        </p>
+    </div>
+    <div class="image-container-1728x626">
+        <img src="./image 5.png" alt="Section Visual" />
+    </div>
+    <section class="cta-orange-section">
+        <button class="cta-quotation-btn">Get a Free Quotation</button>
+    </section>
+    <div class="image-container-1728x947">
+        <img src="https://via.placeholder.com/1728x947.png?text=Your+Image+Here" alt="Section Visual" />
+    </div>
+</body>
+</html>
